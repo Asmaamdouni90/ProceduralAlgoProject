@@ -1,0 +1,59 @@
+FUNCTION read_size () : INTEGER
+VAR
+    n : INTEGER;
+BEGIN
+    REPEAT
+        Write ("Give a valid size positive and less than 100");
+        Read (n);
+    UNTIL (n >0 and n<100);
+    RETURN n ;
+END
+PROCEDURE read_vectors(n:INTEGER, VAR tabF:ARRAY_OF FLOAT, VAR tabS:tabF:ARRAY_OF FLOAT)
+VAR
+    i,j: INTEGER;
+BEGIN
+    FOR i FROM 0 TO n-1  DO
+        Read(tabF[i]);
+    END_FOR
+    FOR j FROM 0 TO n-1 DO
+        Read(tabS[j]);
+    END_FOR
+END
+PROCEDURE dot_product (n: INTEGER, vectorOne:ARRAY_OF FLOAT,vectorTwo:ARRAY_OF FLOAT, VAR ps: FLOAT)
+VAR
+    i, j: INTEGER;
+BEGIN
+    FOR i FROM 0 TO n-1 DO
+    ps:= ps + vectorOne[i]*vectorTwo[i];
+END
+PROCEDURE result (ps: FLOAT)
+BEGIN
+    IF (ps = 0) THEN
+        Write ("The two vectors are orthogonals");
+    ELSE
+        Write ("the two vectors are not orthogonals");
+    END_IF
+END
+
+ALGORITHM orthogonal_vectors
+VAR
+    vectorOne  : ARRAY_OF FLOAT[100];
+    vectorTwo  : ARRAY_OF FLOAT[100];
+    i,n: INTEGER;
+    ps: FLOAT;
+
+BEGIN
+    //Read size of elements
+    n:= read_size();
+    //Read Elements
+    //sub algorithm reading elements of array
+    read_vectors(n, vectorOne, vectorTwo);
+    //add successive elements
+
+    //sub algorithm dot_prod (resolution of our problem)
+    dot_product(n, vectorOne, vectorTwo, ps);
+    //display result
+    
+    //sub algorithm displating result
+    result(ps);
+END
